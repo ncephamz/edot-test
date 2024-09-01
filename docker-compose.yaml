@@ -11,3 +11,10 @@ services:
       - POSTGRES_PASSWORD=user_service
       - POSTGRES_USER=user_service
       - POSTGRES_DB=user_db
+
+  user_service:
+    build:
+      dockerfile: Dockerfile
+      context: services/user-service/.
+    volumes:
+      - .:/opt/app/api
