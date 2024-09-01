@@ -1,0 +1,205 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/users/v1/login": {
+            "post": {
+                "description": "This API for login user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Login User",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.LoginDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.LoginResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/v1/refresh-token": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "This API for refresh token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Refresh Token",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RefreshTokenDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.LoginResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/v1/register": {
+            "post": {
+                "description": "This API for register user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Register User",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.UserDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.UserResp"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.LoginDTO": {
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ],
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "example": "12345678"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "3210808710982738"
+                }
+            }
+        },
+        "dto.LoginResp": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "expired_in": {
+                    "type": "integer"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.RefreshTokenDTO": {
+            "type": "object",
+            "required": [
+                "refresh_token"
+            ],
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UserDTO": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "ncephamz@gmail.com"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Encep Hamzah F R"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "12345678"
+                },
+                "phone_numer": {
+                    "type": "string",
+                    "example": "081320080972"
+                },
+                "photo_profile": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UserResp": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "7d51e482-7abd-4eef-aefa-1959a60c2e03"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

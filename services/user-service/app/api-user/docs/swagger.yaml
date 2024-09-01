@@ -1,0 +1,133 @@
+definitions:
+  dto.LoginDTO:
+    properties:
+      password:
+        example: "12345678"
+        type: string
+      username:
+        example: "3210808710982738"
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  dto.LoginResp:
+    properties:
+      access_token:
+        type: string
+      expired_in:
+        type: integer
+      refresh_token:
+        type: string
+    type: object
+  dto.RefreshTokenDTO:
+    properties:
+      accessToken:
+        type: string
+      refresh_token:
+        type: string
+    required:
+    - refresh_token
+    type: object
+  dto.UserDTO:
+    properties:
+      email:
+        example: ncephamz@gmail.com
+        type: string
+      name:
+        example: Encep Hamzah F R
+        type: string
+      password:
+        example: "12345678"
+        type: string
+      phone_numer:
+        example: "081320080972"
+        type: string
+      photo_profile:
+        type: string
+    required:
+    - name
+    type: object
+  dto.UserResp:
+    properties:
+      id:
+        example: 7d51e482-7abd-4eef-aefa-1959a60c2e03
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /users/v1/login:
+    post:
+      consumes:
+      - application/json
+      description: This API for login user
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.LoginDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.LoginResp'
+      summary: Login User
+      tags:
+      - users
+  /users/v1/refresh-token:
+    post:
+      consumes:
+      - application/json
+      description: This API for refresh token
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RefreshTokenDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.LoginResp'
+      security:
+      - ApiKeyAuth: []
+      summary: Refresh Token
+      tags:
+      - users
+  /users/v1/register:
+    post:
+      consumes:
+      - application/json
+      description: This API for register user
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UserDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UserResp'
+      summary: Register User
+      tags:
+      - users
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
