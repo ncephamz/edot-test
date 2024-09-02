@@ -1,11 +1,5 @@
 # user-service
-This project for testing skyshi for position backend engineer
-
 Pada test ini saya menggunankan pendekatan heksagonal arsitektur, berfokus pada pemisahan core logika dari ketergantungan eksternal. Core harus bersih, hanya terdiri dari pustaka standar dan kode pembungkus yang dibangun dalam repositori ini.
-
-# ERD
-[this is link desain table](https://drive.google.com/file/d/1SrFASmTv5EnpJK1f0Pto9Ed3IUJkpNNT/view?usp=sharing)
-
 
 ## Quick start
 
